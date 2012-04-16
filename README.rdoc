@@ -1,0 +1,41 @@
+= SimpleAceInput
+
+A drop in solution for turning any +textarea+ into an ACE editor via simple_form.
+
+== Install
+
+Put this line in your Gemfile:
+  gem 'simple_ace_input'
+
+Then bundle:
+  % bundle
+
+
+== Configuring
+
+The primary consideration relates to how you want to handle loading the javascript files, as it relates to the Asset Pipeline.
+
+For the whole kit and kaboodle add the following to your application.js:
+  //= require simple_ace_input
+
+
+== Usage
+
+Just designate a textarea input <tt>as: :ace</tt>.
+
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :code, as::ace %>
+    <% end %>
+
+=== Options
+
+Set the <tt>mode</tt>, <tt>theme</tt>, and <tt>height</tt> by passing them as <tt>data-</tt> attributes.
+    data: { ace_mode: 'html', ace_theme: 'carto_light', ace_height: '600' }
+
+== TODOs
+
+* This gem has zero testing coverage.  {SAD TROMBONE}[http://www.sadtrombone.com/]
+
+== Copyright
+
+Copyright (c) 2012 Brian McNabb. See MIT_LICENSE for further details.
