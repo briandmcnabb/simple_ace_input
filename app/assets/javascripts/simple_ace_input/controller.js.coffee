@@ -1,6 +1,6 @@
 class AceInput
   constructor: ->
-    @editor   = ace.edit("editor")
+    @editor   = ace.edit("input")
     @session  = @editor.getSession()
     @renderer = @editor.renderer
     @textarea = $('textarea.ace')
@@ -12,16 +12,19 @@ class AceInput
   setOptions: =>
     @renderer.setShowPrintMargin false
     @renderer.setHScrollBarAlwaysVisible false
+    @session.setUseWorker false
     @session.setTabSize 2
     @session.setUseSoftTabs true
     @session.setFoldStyle "markbeginend"
 
   updateMode: (mode = @textarea.data('ace-mode'))=>
-    mode = require("ace/mode/#{mode}").Mode
-    @session.setMode new mode()
+    if mode
+      mode = require("ace/mode/#{mode}").Mode
+      @session.setMode new mode()
 
   updateTheme: (theme = @textarea.data('ace-theme'))=>
-    @editor.setTheme "ace/theme/#{theme}"
+    if theme
+      @editor.setTheme "ace/theme/#{theme}"
 
   bindTextarea: =>
     ace = @

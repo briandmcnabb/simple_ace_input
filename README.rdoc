@@ -16,7 +16,28 @@ Then bundle:
 The primary consideration relates to how you want to handle loading the javascript files, as it relates to the Asset Pipeline.
 
 For the whole kit and kaboodle add the following to your application.js:
-  //= require simple_ace_input
+    //= require simple_ace_input
+
+For a minimally viable setup (no modes or themes) add the following to your application.js:
+    //= ace/ace
+    //= simple_ace_input/controller
+
+Then add only the modes and themes you want:
+    //= ace/mode-css
+    //= ace/mode-solarized-dark
+
+Another option and one worth considering (b/c ACE is quite large) is only loading the scripts on pages where ACE is actually needed.
+
+Make sure they get precompiled by adding something like the following to your <tt>production.rb</tt> file:
+    config.assets.precompile += ['ace/*.js', 'simple_ace_input']
+
+If you only want to precompile the mode, theme and keybinding files you can use a proc like this:
+    config.assets.precompile += [Proc.new{ |path| File.basename(path, '.js' ) =~ /^(keybinding-|mode-|theme-)\w+$/ }]
+
+Lastly, if you're implementing this in an engine, you can designate the assets to be precompiled via an initializer placed in the <tt>engine.rb</tt> file:
+    initializer :assets, group: :all do |app|
+      app.config.assets.precompile += [...]
+    end
 
 
 == Usage
@@ -31,6 +52,10 @@ Just designate a textarea input <tt>as: :ace</tt>.
 
 Set the <tt>mode</tt>, <tt>theme</tt>, and <tt>height</tt> by passing them as <tt>data-</tt> attributes.
     data: { ace_mode: 'html', ace_theme: 'carto_light', ace_height: '600' }
+
+=== Notes
+
+I have not included any of the worker functionality in this gem because I have found it to be a bit finicky and more trouble than it's worth.
 
 == TODOs
 

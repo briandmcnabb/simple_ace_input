@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Brian McNabb"]
   s.email       = ["brian@new-cartographers.com"]
   s.homepage    = "new-cartographers.com"
-  s.summary     = "Turn a simple_form textarea into an ACE editor."
-  s.description = "Turn a simple_form textarea into an ACE editor."
+  s.summary     = "Turns a simple_form textarea into an ACE editor."
+  s.description = "Turns a simple_form textarea into an ACE editor."
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
