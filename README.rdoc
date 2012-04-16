@@ -11,9 +11,9 @@ Then bundle:
   % bundle
 
 
-== Configuring
+== Configuration
 
-The primary consideration relates to how you want to handle loading the javascript files, as it relates to the Asset Pipeline.
+The primary configuration consideration relates to how you want to handle loading the javascript files, as it relates to the Asset Pipeline.
 
 For the whole kit and kaboodle add the following to your application.js:
     //= require simple_ace_input
@@ -26,9 +26,10 @@ Then add only the modes and themes you want:
     //= ace/mode-css
     //= ace/mode-solarized-dark
 
+
 Another option and one worth considering (b/c ACE is quite large) is only loading the scripts on pages where ACE is actually needed.
 
-Make sure they get precompiled by adding something like the following to your <tt>production.rb</tt> file:
+If you take this route make sure the scripts you use get precompiled by adding something like the following to your <tt>production.rb</tt> file:
     config.assets.precompile += ['ace/*.js', 'simple_ace_input']
 
 If you only want to precompile the mode, theme and keybinding files you can use a proc like this:
@@ -53,6 +54,9 @@ Just designate a textarea input <tt>as: :ace</tt>.
 Set the <tt>mode</tt>, <tt>theme</tt>, and <tt>height</tt> by passing them as <tt>data-</tt> attributes.
     data: { ace_mode: 'html', ace_theme: 'carto_light', ace_height: '600' }
 
+If you would like to change the defaults, run the following to generate an initializer where you can set your own defaults.
+    % rails g simple_ace_input:config
+
 === Notes
 
 I have not included any of the worker functionality in this gem because I have found it to be a bit finicky and more trouble than it's worth.
@@ -60,6 +64,7 @@ I have not included any of the worker functionality in this gem because I have f
 == TODOs
 
 * This gem has zero testing coverage.  {SAD TROMBONE}[http://www.sadtrombone.com/]
+* Make more configuration options available via the <tt>data-</tt> convention.
 
 == Copyright
 
