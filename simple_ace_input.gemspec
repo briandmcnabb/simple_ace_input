@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = SimpleAceInput::VERSION
   s.authors     = ["Brian McNabb"]
   s.email       = ["brian@new-cartographers.com"]
-  s.homepage    = "new-cartographers.com"
+  s.homepage    = "http://github.com/briandmcnabb/simple_ace_input"
   s.summary     = "Turns a simple_form textarea into an ACE editor."
   s.description = "Turns a simple_form textarea into an ACE editor."
 
